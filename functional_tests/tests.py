@@ -109,3 +109,4 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element(By.TAG_NAME,'body').text
         self.assertNotIn('Buy flowers', page_text)
         self.assertNotIn('Give a gift to Lisi', page_text)
+        

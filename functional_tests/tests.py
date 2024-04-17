@@ -97,6 +97,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn('Give a gift to Lisi', page_text)
         
         # 王五输入一个新待办事项，新建一个清单
+        inputbox = self.browser.find_element(By.ID, 'id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
@@ -104,6 +105,7 @@ class NewVisitorTest(LiveServerTestCase):
         # 王五得到了他的唯一URL
         wangwu_list_url = self.browser.current_url
         self.assertRegex(wangwu_list_url, '/lists/.+')
+        self.assertNotEqual(wangwu_list_url,zhangsan_list_url)
         
         # 这个页面还是没有张三的清单
         page_text = self.browser.find_element(By.TAG_NAME,'body').text
